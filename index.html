@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Techcamp</title>
+    <link rel="stylesheet" type="text/css" href="styles/board.css">
+    <script type="text/javascript" src="js/createjs-2013.12.12.min.js"></script>
+    <script type="text/javascript" src="js/techcamp.js"></script>
+    
+    <script>
+        // Create a variable called c2. This variable can be
+        // accessed in all the functions below, unlike variables
+        // s and c which can only be accessed in the function
+        // setup (because they were created in that function)
+        var c2;
+
+        // This is a function called setup
+        function setup() {
+            // Create two variable
+            var s;
+            var c;
+            
+            // Create a Square object and a Circle object
+            var s = new Square("Green");
+            var c = new Circle("Pink");
+            
+            // Add the circle and square objects to
+            // the board
+            board.add(s);
+            board.add(c);
+            
+            // Move thw square to a random square on the
+            // board
+            s.moveRandom();
+            
+            // Move the circle to square 7,4 on the board
+            c.moveToSquare(7,4);
+            
+            // Create another circle, add it to the board
+            // and move it to a square
+            c2 = new Circle("Red");
+            board.add(c2);
+            c2.moveToSquare(3,4);
+            
+            
+        }
+        
+        // This is a function called go
+        function go() {
+            // I want to try and remove the circle c2. Because
+            // the variable c2 was created (aka declared) outside
+            // of all the function it can be accessed inside
+            // any function. 
+            // I wouldn't be able to remove the circle c or square s
+            // from here as those variables were declared in the
+            // function setup and so can only be accessed in
+            // that function
+            board.remove(c2);
+        }
+        
+    </script>
+</head>
+
+<body onload="init()">
+    <canvas id="theCanvas" width="500" height="500"></canvas>
+    <div id="menu">
+        <button type="button" onclick="setup()">
+            Setup
+        </button>
+        <button type="button" onclick="go()">
+            Go
+        </button>
+        <button type="button" onclick="board.clear()">
+            Clear
+        </button>
+        <div id="errorMessage"></div>
+    </div>
+    
+</body>
+
+</html>
